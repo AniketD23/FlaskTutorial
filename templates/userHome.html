@@ -20,6 +20,24 @@
 	<script>
 	
 	$(function() {
+	
+		GetWishes();
+			function GetWishes(){		
+				$.ajax({
+					url : '/getWish',
+					type : 'GET',
+					success: function(res){
+					
+						var wishObj = JSON.parse(res);
+						$('#ulist').empty();
+						$('#listTemplate').tmpl(wishObj).appendTo('#ulist');				
+						},
+						
+					error: function(error){
+						console.log(error);
+						}
+					});
+				}
 
 
         $('#btnUpdate').click(function() {
@@ -78,27 +96,6 @@
 	
     </script>
 	
-	<script>
-	$(function (){
-	GetWishes();
-	function GetWishes(){		
-		$.ajax({
-			url : '/getWish',
-			type : 'GET',
-			success: function(res){
-			
-				var wishObj = JSON.parse(res);
-				$('#ulist').empty();
-				$('#listTemplate').tmpl(wishObj).appendTo('#ulist');				
-				},
-				
-			error: function(error){
-				console.log(error);
-				}
-			});
-		}
-	});
-	</script>
 	
 
 
